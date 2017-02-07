@@ -1,0 +1,2395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1237</width>
+    <height>892</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Molecular Dynamics</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="toolbar" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>23</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>23</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="cont_sim_buttons" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>285</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>285</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <widget class="QPushButton" name="btn_sim_step">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>83</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Step</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_sim_start">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>0</y>
+            <width>83</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="btn_sim_stop">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>190</x>
+            <y>0</y>
+            <width>83</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Stop</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_calc_time">
+         <property name="text">
+          <string>Calculation time: 0 µs</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_frame_time">
+         <property name="text">
+          <string>Frame time: 0 µs</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_frame_rate">
+         <property name="text">
+          <string>Refresh rate: 0.0 fps</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="cont_help" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <widget class="QPushButton" name="btn_help">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>30</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>?</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="cont_lvl1_1" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>500</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QScrollArea" name="scrl_area_left">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>280</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrl_area_left_contents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>-2</y>
+            <width>266</width>
+            <height>617</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="horizontalSpacing">
+            <number>0</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>6</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="gbox_display_options">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>375</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>375</height>
+              </size>
+             </property>
+             <property name="title">
+              <string>Display options</string>
+             </property>
+             <widget class="QGroupBox" name="gbox_frameskip">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>25</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Frameskip</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QSpinBox" name="sbox_frameskip">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="accelerated">
+                <bool>false</bool>
+               </property>
+               <property name="showGroupSeparator" stdset="0">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>48</number>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_frameskip_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_frameskip_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_force_indicators">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>100</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Force indicators</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QCheckBox" name="cbox_dist_threshold">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>25</y>
+                 <width>181</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Distance threshold</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QCheckBox" name="cbox_sigma">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>45</y>
+                 <width>181</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>σ (Root of potential)</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QFrame" name="frm_dist_threshold_col">
+               <property name="geometry">
+                <rect>
+                 <x>200</x>
+                 <y>27</y>
+                 <width>15</width>
+                 <height>15</height>
+                </rect>
+               </property>
+               <property name="palette">
+                <palette>
+                 <active>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>239</red>
+                     <green>41</green>
+                     <blue>41</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </active>
+                 <inactive>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>239</red>
+                     <green>41</green>
+                     <blue>41</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </inactive>
+                 <disabled>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>239</red>
+                     <green>41</green>
+                     <blue>41</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>239</red>
+                     <green>41</green>
+                     <blue>41</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </disabled>
+                </palette>
+               </property>
+               <property name="autoFillBackground">
+                <bool>true</bool>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QPushButton" name="btn_dist_threshold_col">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>15</width>
+                  <height>15</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </widget>
+              <widget class="QFrame" name="frm_sigma_col">
+               <property name="geometry">
+                <rect>
+                 <x>200</x>
+                 <y>50</y>
+                 <width>15</width>
+                 <height>15</height>
+                </rect>
+               </property>
+               <property name="palette">
+                <palette>
+                 <active>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </active>
+                 <inactive>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>255</red>
+                     <green>255</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </inactive>
+                 <disabled>
+                  <colorrole role="Base">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                  <colorrole role="Window">
+                   <brush brushstyle="SolidPattern">
+                    <color alpha="255">
+                     <red>0</red>
+                     <green>0</green>
+                     <blue>255</blue>
+                    </color>
+                   </brush>
+                  </colorrole>
+                 </disabled>
+                </palette>
+               </property>
+               <property name="autoFillBackground">
+                <bool>true</bool>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QPushButton" name="btn_sigma_col">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>15</width>
+                  <height>15</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_particle_size">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>175</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Particle size</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QSpinBox" name="sbox_particle_size">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="accelerated">
+                <bool>false</bool>
+               </property>
+               <property name="showGroupSeparator" stdset="0">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>48</number>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_particle_size_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_particle_size_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_stat_update">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>251</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Statistics update interval</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_stat_update_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_stat_update_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_stat_update">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QPushButton" name="btn_display_apply">
+              <property name="geometry">
+               <rect>
+                <x>70</x>
+                <y>330</y>
+                <width>141</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Apply</string>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QGroupBox" name="gbox_heat_bath">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>220</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>220</height>
+              </size>
+             </property>
+             <property name="title">
+              <string>Heat bath</string>
+             </property>
+             <widget class="QPushButton" name="btn_heat_apply">
+              <property name="geometry">
+               <rect>
+                <x>40</x>
+                <y>180</y>
+                <width>91</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Apply</string>
+              </property>
+             </widget>
+             <widget class="QGroupBox" name="gbox_target_temp">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>25</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Target temperature</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_target_temp_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_target_temp_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_target_temp">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_heat_time">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>100</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Transition time x100 frames</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_heat_time_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_heat_time_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QSpinBox" name="sbox_heat_time">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>10</number>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QPushButton" name="btn_heat_abort">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="geometry">
+               <rect>
+                <x>140</x>
+                <y>180</y>
+                <width>91</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Abort</string>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QWidget" name="scrl_area_left_spacer" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="cont_lvl2_1" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="spacer_draw_area_left" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="cont_lvl3_1" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QWidget" name="spacer_draw_area_top" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="draw_area">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="spacer_draw_area_bottom" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="spacer_draw_area_right" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="scrl_area_right">
+         <property name="minimumSize">
+          <size>
+           <width>280</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>280</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrl_area_right_contents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>266</width>
+            <height>670</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="gbox_sim_params">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>660</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>660</height>
+              </size>
+             </property>
+             <property name="title">
+              <string>Simulation paramters</string>
+             </property>
+             <widget class="QGroupBox" name="gbox_max_deviation">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>325</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Maximum initial deviation</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_max_deviation_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_max_deviation_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_max_deviation">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QPushButton" name="btn_sim_params_apply">
+              <property name="geometry">
+               <rect>
+                <x>70</x>
+                <y>620</y>
+                <width>141</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Reinitialize</string>
+              </property>
+             </widget>
+             <widget class="QGroupBox" name="gbox_num_particles">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>100</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Number of particles</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QSpinBox" name="sbox_num_particles">
+               <property name="geometry">
+                <rect>
+                 <x>69</x>
+                 <y>30</y>
+                 <width>90</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="accelerated">
+                <bool>false</bool>
+               </property>
+               <property name="showGroupSeparator" stdset="0">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>1048576</number>
+               </property>
+               <property name="value">
+                <number>1</number>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_num_particles_mm">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_num_particles_p">
+               <property name="geometry">
+                <rect>
+                 <x>158</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_num_particles_m">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_num_particles_pp">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_timestep">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>250</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Timestep</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_timestep_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_timestep_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_timestep">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_max_v0">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>400</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Maximum initial velocity</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_max_v0_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_max_v0_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_max_v0">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_number_threads">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>25</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Number of threads</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QSpinBox" name="sbox_num_threads">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="accelerated">
+                <bool>false</bool>
+               </property>
+               <property name="showGroupSeparator" stdset="0">
+                <bool>false</bool>
+               </property>
+               <property name="suffix">
+                <string/>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>48</number>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_num_threads_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_num_threads_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_periodic_boundaries">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>475</y>
+                <width>227</width>
+                <height>52</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Periodic boundary condition</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QCheckBox" name="cbox_periodic_boundaries">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>25</y>
+                 <width>201</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Enabled</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_lattice_len">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>175</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Length of the lattice</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_lattice_len_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_lattice_len_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_lattice_len">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+             <widget class="QGroupBox" name="gbox_dist_threshold">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>535</y>
+                <width>227</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="title">
+               <string>Distance threshold for forces</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+              </property>
+              <widget class="QPushButton" name="btn_dist_threshold_m">
+               <property name="geometry">
+                <rect>
+                 <x>11</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>◀</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="btn_dist_threshold_p">
+               <property name="geometry">
+                <rect>
+                 <x>187</x>
+                 <y>31</y>
+                 <width>30</width>
+                 <height>30</height>
+                </rect>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text">
+                <string>▶</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="autoRepeat">
+                <bool>true</bool>
+               </property>
+               <property name="autoRepeatDelay">
+                <number>200</number>
+               </property>
+               <property name="autoRepeatInterval">
+                <number>75</number>
+               </property>
+               <property name="autoDefault">
+                <bool>true</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QDoubleSpinBox" name="sbox_dist_threshold">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>148</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimum">
+                <double>0.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QWidget" name="scrl_box_right_spacer" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+      <zorder>cont_lvl2_1</zorder>
+      <zorder>scrl_area_right</zorder>
+      <zorder>scrl_area_left</zorder>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frm_energy_graph">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="frm_temp_graph">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
