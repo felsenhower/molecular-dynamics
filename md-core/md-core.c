@@ -145,23 +145,21 @@ static Molecule *init_molecules(SimParams *params) {
   return molecules;
 }
 
-/**
- * Thread function for calculate_forces
- */
-static void *calculate_forces_tfun(void* _args) {
-  calculate_forces_targs *args = (calculate_forces_targs*) _args;
-  for (uint64_t k = args->first_k; k <= args->last_k; k++) {
-    uint64_t i = args->data->index_mappings[0][k];
-    uint64_t j = args->data->index_mappings[1][k];
-    Vector dist = distance(&(args->data->molecules[i].curr_pos),
-                           &(args->data->molecules[j].curr_pos),
-                           args->params);
+void calculate_forces(SimData *data, SimParams *params){
+  uint64_t number_of_forces = params->N * (params->N - 1) / 2;
+  #pragma omp for simd
+  for (uint64_t k = 0; k < number_of_forces; k++) {
+    uint64_t i = data->index_mappings[0][k];
+    uint64_t j = data->index_mappings[1][k];
+    Vector dist = distance(&(data->molecules[i].curr_pos),
+                           &(data->molecules[j].curr_pos),
+                           params);
 
-    Coordinates *force_ij = &(args->data->forces_buffer[i][j]);
-    Coordinates *force_ji = &(args->data->forces_buffer[j][i]);
+    Coordinates *force_ij = &(data->forces_buffer[i][j]);
+    Coordinates *force_ji = &(data->forces_buffer[j][i]);
 
-    if(dist.length > 0.0 && (args->params->dist_threshold == 0.0
-       || dist.length <= args->params->dist_threshold)){
+    if(dist.length > 0.0 && (params->dist_threshold == 0.0
+       || dist.length <= params->dist_threshold)){
       double force = lennjo_force(dist.length);
       double force_x = force * dist.coordinates.x / dist.length;
       double force_y = force * dist.coordinates.y / dist.length;
@@ -174,36 +172,6 @@ static void *calculate_forces_tfun(void* _args) {
       force_ij->y = 0.0;
       force_ji->x = 0.0;
       force_ji->y = 0.0;
-    }
-  }
-  return NULL;
-}
-
-/**
- * Calculates all forces between all molecules and stores them in the forces
- * buffer.
- * @param data the simulation data with the molecules array and the forces buffer
- * @param params the simulation parameters
- */
-static void calculate_forces(SimData *data, SimParams *params) {
-  ASSERT(params->number_of_threads, "At least one thread needed.");
-  if (params->N > 1) {
-    pthread_t threads[params->number_of_threads];
-    uint64_t number_of_forces = params->N * (params->N - 1) / 2;
-    uint64_t k_per_thread = number_of_forces / params->number_of_threads;
-    calculate_forces_targs args[params->number_of_threads];
-    for(uint64_t t = 0; t < params->number_of_threads; t++){
-      args[t].data = data;
-      args[t].params = params;
-      args[t].first_k = t * k_per_thread;
-      args[t].last_k = (t == params->number_of_threads - 1) ? number_of_forces - 1
-                                                    : (t + 1) * k_per_thread - 1;
-
-      ASSERT(!pthread_create(&threads[t], NULL, &calculate_forces_tfun, &args[t]),
-             "Failed to create a new thread");
-    }
-    for(uint64_t t = 0; t < params->number_of_threads; t++){
-      pthread_join(threads[t], NULL);
     }
   }
 }
@@ -315,61 +283,32 @@ static void fix_boundaries(double *curr, double *next, SimParams *params) {
 }
 
 
-/**
- * Thread function for apply_forces
- */
-static void *apply_forces_tfun(void* _args){
-  apply_forces_targs *args = (apply_forces_targs*) _args;
-  double squared_timestep = args->params->timestep * args->params->timestep;
-  for(uint64_t i = args->first_i; i <= args->last_i; i++) {
+void apply_forces(SimData *data, SimParams *params){
+  double squared_timestep = params->timestep * params->timestep;
+  #pragma omp for simd
+  for(uint64_t i = 0; i < params->N; i++) {
 
-    Coordinates force = get_total_force(args->data, args->params, i);
+    Coordinates force = get_total_force(data, params, i);
 
-    Coordinates *prev_pos = &(args->data->molecules[i].prev_pos);
-    Coordinates *curr_pos = &(args->data->molecules[i].curr_pos);
+    Coordinates *prev_pos = &(data->molecules[i].prev_pos);
+    Coordinates *curr_pos = &(data->molecules[i].curr_pos);
 
     Coordinates next_pos = {.x = 2 * curr_pos->x - prev_pos->x
                             + force.x * squared_timestep,
                             .y = 2 * curr_pos->y - prev_pos->y
                             + force.y * squared_timestep};
 
-    args->data->molecules[i].vel.x = (next_pos.x - prev_pos->x)
-                                     / (2 * args->params->timestep);
-    args->data->molecules[i].vel.y = (next_pos.y - prev_pos->y)
-                                     / (2 * args->params->timestep);
+    data->molecules[i].vel.x = (next_pos.x - prev_pos->x)
+                                     / (2 * params->timestep);
+    data->molecules[i].vel.y = (next_pos.y - prev_pos->y)
+                                     / (2 * params->timestep);
 
-    fix_boundaries(&(curr_pos->x), &(next_pos.x), args->params);
-    fix_boundaries(&(curr_pos->y), &(next_pos.y), args->params);
+    fix_boundaries(&(curr_pos->x), &(next_pos.x), params);
+    fix_boundaries(&(curr_pos->y), &(next_pos.y), params);
 
     *prev_pos = *curr_pos;
     *curr_pos = next_pos;
 
-  }
-  return NULL;
-}
-
-/**
- * Applies the stored forces to the molecules.
- * @param data the simulation data
- * @param params the simulation parameters
- */
-static void apply_forces(SimData *data, SimParams *params) {
-  ASSERT(params->number_of_threads, "At least one thread needed.");
-  pthread_t threads[params->number_of_threads];
-  uint64_t number_of_molecules = params->N;
-  uint64_t k_per_thread = number_of_molecules / params->number_of_threads;
-  apply_forces_targs args[params->number_of_threads];
-  for (uint64_t t = 0; t < params->number_of_threads; t++) {
-    args[t].data = data;
-    args[t].params = params;
-    args[t].first_i = t * k_per_thread;
-    args[t].last_i = (t == params->number_of_threads - 1) ? number_of_molecules - 1
-                                                  : (t + 1) * k_per_thread - 1;
-    ASSERT(!pthread_create(&threads[t], NULL, &apply_forces_tfun, &args[t]),
-           "Failed to create a new thread");
-    }
-  for (uint64_t t = 0; t < params->number_of_threads; t++) {
-    pthread_join(threads[t], NULL);
   }
 }
 
@@ -414,6 +353,7 @@ void apply_heat_bath(SimData *data, SimParams *params) {
 }
 
 void step(SimData *data, SimParams *params) {
+  #pragma omp parallel
   calculate_forces(data, params);
   apply_forces(data, params);
   get_statistics(data, params);
@@ -456,6 +396,7 @@ SimParams init_params(uint64_t number_of_threads, uint64_t N,
   result.periodic_boundaries = periodic_boundaries;
   result.dist_threshold = dist_threshold;
   result.iterations = iterations;
+  omp_set_num_threads(number_of_threads);
   return result;
 }
 

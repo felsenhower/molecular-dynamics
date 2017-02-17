@@ -31,3 +31,7 @@ HEADERS  += mainwindow.h  \
 ../../md-core/md-core.h
 
 FORMS    += mainwindow.ui
+
+QMAKE_CFLAGS += -fopenmp -flto -march=native
+
+QMAKE_LFLAGS += -fopenmp -flto
