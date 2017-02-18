@@ -51,7 +51,6 @@ typedef struct {
 
 typedef struct {
   Molecule *molecules;         /**< The array of molecules */
-  uint64_t **index_mappings;   /**< The 2d-array of index mappings */
   Coordinates **forces_buffer; /**< The buffer to store the forces inside */
   double kinetic_energy;       /**< The total kinetic energy of the system */
   double potential_energy;     /**< The total potential energy of the system */

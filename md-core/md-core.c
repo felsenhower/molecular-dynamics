@@ -11,18 +11,6 @@
 
 #include "md-core.h"
 
-typedef struct {
-  SimParams *params;
-  SimData *data;
-  uint64_t first_k, last_k;
-} calculate_forces_targs;
-
-typedef struct {
-  SimParams *params;
-  SimData *data;
-  uint64_t first_i, last_i;
-} apply_forces_targs;
-
 void seed() {
    struct timeval time;
    gettimeofday(&time, NULL);
@@ -146,65 +134,33 @@ static Molecule *init_molecules(SimParams *params) {
 }
 
 void calculate_forces(SimData *data, SimParams *params){
-  uint64_t number_of_forces = params->N * (params->N - 1) / 2;
   #pragma omp for simd
-  for (uint64_t k = 0; k < number_of_forces; k++) {
-    uint64_t i = data->index_mappings[0][k];
-    uint64_t j = data->index_mappings[1][k];
-    Vector dist = distance(&(data->molecules[i].curr_pos),
-                           &(data->molecules[j].curr_pos),
-                           params);
-
-    Coordinates *force_ij = &(data->forces_buffer[i][j]);
-    Coordinates *force_ji = &(data->forces_buffer[j][i]);
-
-    if(dist.length > 0.0 && (params->dist_threshold == 0.0
-       || dist.length <= params->dist_threshold)){
-      double force = lennjo_force(dist.length);
-      double force_x = force * dist.coordinates.x / dist.length;
-      double force_y = force * dist.coordinates.y / dist.length;
-      force_ij->x = force_x;
-      force_ij->y = force_y;
-      force_ji->x = -force_x;
-      force_ji->y = -force_y;
-    } else {
-      force_ij->x = 0.0;
-      force_ij->y = 0.0;
-      force_ji->x = 0.0;
-      force_ji->y = 0.0;
+  for (uint64_t i = 0; i < params->N-1; i++) {
+    for (uint64_t j = i + 1; j < params->N; j++) {
+      Vector dist = distance(&(data->molecules[i].curr_pos),
+                             &(data->molecules[j].curr_pos),
+                             params);
+  
+      Coordinates *force_ij = &(data->forces_buffer[i][j]);
+      Coordinates *force_ji = &(data->forces_buffer[j][i]);
+  
+      if(dist.length > 0.0 && (params->dist_threshold == 0.0
+         || dist.length <= params->dist_threshold)){
+        double force = lennjo_force(dist.length);
+        double force_x = force * dist.coordinates.x / dist.length;
+        double force_y = force * dist.coordinates.y / dist.length;
+        force_ij->x = force_x;
+        force_ij->y = force_y;
+        force_ji->x = -force_x;
+        force_ji->y = -force_y;
+      } else {
+        force_ij->x = 0.0;
+        force_ij->y = 0.0;
+        force_ji->x = 0.0;
+        force_ji->y = 0.0;
+      }
     }
   }
-}
-
-/**
- * Returns a helper array that contains the mappings of an index k on the
- * flattened array to an index i and an index j on the upper right triangular
- * matrix with i,j=0..N-1.
- * @param N
- * @return The array of array of indices. The first element is the array of
- *         mappings from k to i, and the second element is the array of mappings
- *         from k to j.
- *         Example: Let mappings = index_mappings(10);
- *                  => i_of_k = mappings[0][k]
- *                  => j_of_k = mappings[1][k]
- */
-static uint64_t **get_index_mappings(uint64_t N) {
-  /* For N particles, we only need to calculate N*(N-1)/2 forces, because
-     F_ij = -F_ji and F_ii = 0. We save two consecutive arrays. */
-  uint64_t **result = malloc(sizeof(uint64_t*) * 2);
-  ASSERT(result, "Could not allocate memory for index mappings.");
-  result[0] = malloc(sizeof(uint64_t) * N * (N - 1) / 2);
-  ASSERT(result[0], "Could not allocate memory for index mappings.");
-  result[1] = malloc(sizeof(uint64_t) * N * (N - 1) / 2);
-  ASSERT(result[1], "Could not allocate memory for index mappings.");
-  uint64_t k = 0;
-  for (uint64_t i = 0; i < N-1; i++) {
-    for (uint64_t j = i + 1; j < N; j++, k++) {
-      result[0][k] = i;
-      result[1][k] = j;
-    }
-  }
-  return result;
 }
 
 /**
@@ -308,7 +264,6 @@ void apply_forces(SimData *data, SimParams *params){
 
     *prev_pos = *curr_pos;
     *curr_pos = next_pos;
-
   }
 }
 
@@ -366,7 +321,6 @@ void step(SimData *data, SimParams *params) {
 SimData init_data(SimParams *params) {
   SimData result;
   result.molecules = init_molecules(params);
-  result.index_mappings = get_index_mappings(params->N);
   result.forces_buffer = malloc(sizeof(Coordinates*) * params->N);
   ASSERT(result.forces_buffer, "Could not allocate memory for forces buffer");
 
@@ -402,9 +356,6 @@ SimParams init_params(uint64_t number_of_threads, uint64_t N,
 
 void finalize(SimData *data, SimParams *params) {
   free(data->molecules);
-  free(data->index_mappings[0]);
-  free(data->index_mappings[1]);
-  free(data->index_mappings);
   for (uint64_t i = 0; i < params->N; i++) {
     free(data->forces_buffer[i]);
   }
