@@ -20,6 +20,7 @@
 #include <stdbool.h>
 #include <pthread.h>
 #include <inttypes.h>
+#include <omp.h>
 
 #define ASSERT(COND, MSG)\
   if(!(COND)){\
